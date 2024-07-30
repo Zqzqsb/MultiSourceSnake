@@ -8,14 +8,13 @@ COPY tsconfig.json ./
 
 COPY packages packages
 
+RUN apt-get update && apt-get install -y python3
+
 RUN export YARN_CACHE_FOLDER="$(mktemp -d)" \
     && yarn install --frozen-lockfile \
     && rm -r "$YARN_CACHE_FOLDER"
 
 RUN yarn build:action
-
-
-
 
 
 FROM node:20-slim

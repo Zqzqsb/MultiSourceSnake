@@ -32,9 +32,12 @@ it(
 
     const outputs = parseOutputsOption(entries);
 
+    const githubUserName = process.env.GITHUB_USER || "";
+    const giteeUserName = process.env.GITEE_USER || "";
+
     const results = await generateContributionSnake(
-      "Zqzqsb",
-      "zqzqsb",
+      githubUserName,
+      giteeUserName,
       outputs,
       {
         githubToken: process.env.GITHUB_TOKEN!,

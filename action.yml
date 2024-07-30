@@ -14,6 +14,12 @@ inputs:
     description: "github token used to fetch the contribution calendar. Default to the action token if empty."
     required: false
     default: ${{ github.token }}
+  gitee_user_name:
+    description: "gitee user name"
+    required: true
+  gitee_token:
+    description: "gitee token used to access gitee api."
+    required: true
   outputs:
     required: false
     default: null

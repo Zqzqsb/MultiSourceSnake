@@ -5,18 +5,17 @@ import { parseOutputsOption } from "./outputsOptions";
 
 (async () => {
   try {
-    const githubUserName = core.getInput("github_user_name");
-    const giteeUserName = core.getInput("gitee_user_name");
+    const githubUserName = process.env.GITHUB_USER || "";
+    const giteeUserName = process.env.GITEE_USER || "";
+
     const outputs = parseOutputsOption(
       core.getMultilineInput("outputs") ?? [
         core.getInput("gif_out_path"),
         core.getInput("svg_out_path"),
       ]
     );
-    const githubToken =
-      process.env.GITHUB_TOKEN ?? core.getInput("github_token");
-
-    const giteeToken = process.env.GITEE_TOKEN ?? core.getInput("gitee_token");
+    const githubToken = process.env.GITHUB_TOKEN || "";
+    const giteeToken = process.env.GITEE_TOKEN || "";
 
     const { generateContributionSnake } = await import(
       "./generateContributionSnake"

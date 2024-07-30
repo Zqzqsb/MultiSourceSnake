@@ -62,28 +62,6 @@ export const getGiteeUserContribution = async (
   return result;
 };
 
-type GraphQLRes = {
-  user: {
-    contributionsCollection: {
-      contributionCalendar: {
-        weeks: {
-          contributionDays: {
-            contributionCount: number;
-            contributionLevel:
-              | "FOURTH_QUARTILE"
-              | "THIRD_QUARTILE"
-              | "SECOND_QUARTILE"
-              | "FIRST_QUARTILE"
-              | "NONE";
-            date: string;
-            weekday: number;
-          }[];
-        }[];
-      };
-    };
-  };
-};
-
 export type Res = Awaited<ReturnType<typeof getGiteeUserContribution>>;
 
 export type Cell = Res[number];
