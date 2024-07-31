@@ -5,17 +5,31 @@ import { parseOutputsOption } from "./outputsOptions";
 
 (async () => {
   try {
+    // const outputs = parseOutputsOption(
+    //   core.getMultilineInput("outputs") ?? [
+    //     core.getInput("gif_out_path"),
+    //     core.getInput("svg_out_path"),
+    //   ]
+    // );
+
+    const entries = [
+      path.join(__dirname, "output/out.svg"),
+
+      path.join(__dirname, "output/out-dark.svg") +
+        "?palette=github-dark&color_snake=orange",
+
+      path.join(__dirname, "output/out.gif") +
+        "?color_snake=orange&color_dots=#d4e0f0,#8dbdff,#64a1f4,#4b91f1,#3c7dd9",
+    ];
+
+    const outputs = parseOutputsOption(entries);
+
     const githubUserName = process.env.GITHUB_USER || "";
     const giteeUserName = process.env.GITEE_USER || "";
-
-    const outputs = parseOutputsOption(
-      core.getMultilineInput("outputs") ?? [
-        core.getInput("gif_out_path"),
-        core.getInput("svg_out_path"),
-      ]
-    );
     const githubToken = process.env.GITHUB_TOKEN || "";
     const giteeToken = process.env.GITEE_TOKEN || "";
+
+    console.log(githubUserName, giteeUserName, githubToken, giteeToken);
 
     const { generateContributionSnake } = await import(
       "./generateContributionSnake"
@@ -29,6 +43,8 @@ import { parseOutputsOption } from "./outputsOptions";
         giteeToken,
       }
     );
+    console.log("Done Computing Result.");
+    console.log(results.length);
 
     outputs.forEach((out, i) => {
       const result = results[i];

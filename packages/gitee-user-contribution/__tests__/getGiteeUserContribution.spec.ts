@@ -3,7 +3,7 @@ import { config } from "dotenv";
 config({ path: __dirname + "/../../../.env" });
 
 describe("getGiteeUserContribution", () => {
-  const promise = getGiteeUserContribution("zqzqsb", {
+  const promise = getGiteeUserContribution(process.env.GITEE_USER!, {
     giteeToken: process.env.GITEE_TOKEN!,
   });
 

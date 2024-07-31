@@ -57,8 +57,6 @@ export const getGiteeUserContribution = async (
       level,
     };
   });
-
-  console.log(result); // 打印结果结构
   return result;
 };
 

@@ -17,6 +17,9 @@ export const generateContributionSnake = async (
   } | null)[],
   options: { githubToken: string; giteeToken: string }
 ) => {
+  console.log("🚀 Outputs:", outputs);
+
+  // 可能是这里 await 的问题
   console.log("🎣 fetching github user contribution");
   const githubCells = await getGithubUserContribution(githubUserName, options);
 
@@ -24,8 +27,11 @@ export const generateContributionSnake = async (
   const giteeCells = await getGiteeUserContribution(giteeUserName, options);
 
   const cells = githubCells;
+  console.log(giteeCells.length);
+  console.log(githubCells.length);
 
   const giteeContributionMap: Record<string, number> = {};
+
   giteeCells.forEach((cell) => {
     giteeContributionMap[cell.date] = cell.count;
   });

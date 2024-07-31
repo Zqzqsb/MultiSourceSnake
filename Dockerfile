@@ -1,4 +1,4 @@
-FROM node:20-slim as builder
+FROM node:18-slim as builder
 
 WORKDIR /app
 
@@ -17,7 +17,7 @@ RUN export YARN_CACHE_FOLDER="$(mktemp -d)" \
 RUN yarn build:action
 
 
-FROM node:20-slim
+FROM node:18-slim
 
 WORKDIR /action-release
 
