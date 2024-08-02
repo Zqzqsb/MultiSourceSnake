@@ -18,6 +18,8 @@ export const generateContributionSnake = async (
   options: { githubToken: string; giteeToken: string }
 ) => {
   console.log("🚀 Outputs:", outputs);
+  console.log("🚀 giteeUsername:" , giteeUserName);
+  console.log("🚀 githubUsername:" , githubUserName);
 
   // 可能是这里 await 的问题
   console.log("🎣 fetching github user contribution");

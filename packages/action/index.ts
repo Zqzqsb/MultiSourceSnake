@@ -24,11 +24,12 @@ import { parseOutputsOption } from "./outputsOptions";
 
     const outputs = parseOutputsOption(entries);
 
-    const githubUserName = process.env.GITHUB_USER || "";
-    const giteeUserName = process.env.GITEE_USER || "";
-    const githubToken = process.env.GITHUB_TOKEN || "";
-    const giteeToken = process.env.GITEE_TOKEN || "";
+    const githubUserName = process.env.INPUT_GITHUB_USER || "";
+    const giteeUserName = process.env.INPUT_GITEE_USER || "";
+    const githubToken = process.env.INPUT_GITHUB_TOKEN || "";
+    const giteeToken = process.env.INPUT_GITEE_TOKEN || "";
 
+    console.log("UserInfo:");
     console.log(githubUserName, giteeUserName, githubToken, giteeToken);
 
     const { generateContributionSnake } = await import(
