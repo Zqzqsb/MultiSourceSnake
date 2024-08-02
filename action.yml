@@ -1,10 +1,10 @@
-name: "generate-snake-game-from-github-contribution-grid"
-description: "Generates a snake game from a github user contributions grid. Output the animation as gif or svg"
-author: "platane"
+name: "generate-multi-source-snake-animation"
+description: "can generate multisource snake animation from both "
+author: "ZQ"
 
 runs:
   using: docker
-  image: docker://platane/snk@sha256:1c8a0b51a75ad8cf36b7defddd2187bdbb92bbbb5521a9e6cc5df795b00fc590
+  image: docker://pray0/multi-source-snake:v1
 
 inputs:
   github_user_name:
@@ -12,8 +12,7 @@ inputs:
     required: true
   github_token:
     description: "github token used to fetch the contribution calendar. Default to the action token if empty."
-    required: false
-    default: ${{ github.token }}
+    required: true
   gitee_user_name:
     description: "gitee user name"
     required: true
