@@ -7,13 +7,13 @@ runs:
   image: docker://pray0/multi-source-snake:v1
 
 inputs:
-  GITHUB_USER_NAME:
+  GITHUB_USER:
     description: "GitHub user name"
     required: true
   GITHUB_TOKEN:
     description: "GitHub token used to fetch the contribution calendar. Default to the action token if empty."
     required: true
-  GITEE_USER_NAME:
+  GITEE_USER:
     description: "Gitee user name"
     required: true
   GITEE_TOKEN:
