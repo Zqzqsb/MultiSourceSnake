@@ -10,6 +10,11 @@ COPY packages packages
 
 RUN apt-get update && apt-get install -y python3
 
+RUN apt-get update && apt-get install -y \
+    pkg-config \
+    libpixman-1-dev
+
+
 RUN export YARN_CACHE_FOLDER="$(mktemp -d)" \
     && yarn install --frozen-lockfile \
     && rm -r "$YARN_CACHE_FOLDER"
