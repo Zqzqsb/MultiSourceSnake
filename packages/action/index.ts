@@ -13,12 +13,12 @@ import { parseOutputsOption } from "./outputsOptions";
     // );
 
     const entries = [
-      path.join(__dirname, "output/out.svg"),
+      path.join(__dirname, "/github/workspace/output/out.svg"),
 
-      path.join(__dirname, "output/out-dark.svg") +
+      path.join(__dirname, "/github/workspace/output/out-dark.svg") +
         "?palette=github-dark&color_snake=orange",
 
-      path.join(__dirname, "output/out.gif") +
+      path.join(__dirname, "/github/workspace/output/out.gif") +
         "?color_snake=orange&color_dots=#d4e0f0,#8dbdff,#64a1f4,#4b91f1,#3c7dd9",
     ];
 
