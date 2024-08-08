@@ -5,24 +5,22 @@ import { parseOutputsOption } from "./outputsOptions";
 
 (async () => {
   try {
-    // const outputs = parseOutputsOption(
-    //   core.getMultilineInput("outputs") ?? [
-    //     core.getInput("gif_out_path"),
-    //     core.getInput("svg_out_path"),
-    //   ]
-    // );
+    const outputs = parseOutputsOption(
+      core.getMultilineInput("outputs") ?? [
+        core.getInput("gif_out_path"),
+        core.getInput("svg_out_path"),
+      ]
+    );
 
-    const entries = [
-      path.join(__dirname, "/github/workspace/output/out.svg"),
+    // const entries = [
+    //   path.join(__dirname, "/github/workspace/output/out.svg"),
 
-      path.join(__dirname, "/github/workspace/output/out-dark.svg") +
-        "?palette=github-dark&color_snake=orange",
+    //   path.join(__dirname, "/github/workspace/output/out-dark.svg") +
+    //     "?palette=github-dark&color_snake=orange",
 
-      path.join(__dirname, "/github/workspace/output/out.gif") +
-        "?color_snake=orange&color_dots=#d4e0f0,#8dbdff,#64a1f4,#4b91f1,#3c7dd9",
-    ];
-
-    const outputs = parseOutputsOption(entries);
+    //   path.join(__dirname, "/github/workspace/output/out.gif") +
+    //     "?color_snake=orange&color_dots=#d4e0f0,#8dbdff,#64a1f4,#4b91f1,#3c7dd9",
+    // ];
 
     const githubUserName = process.env.INPUT_GITHUB_USER || "";
     const giteeUserName = process.env.INPUT_GITEE_USER || "";
