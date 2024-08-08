@@ -4,7 +4,7 @@ author: "ZQ"
 
 runs:
   using: docker
-  image: docker://pray0/multi-source-snake:v1.2
+  image: docker://pray0/multi-source-snake:v1.3
 
 inputs:
   GITHUB_USER:
