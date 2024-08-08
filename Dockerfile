@@ -23,13 +23,13 @@ RUN yarn build:action
 
 FROM node:18-slim
 
-WORKDIR /
+WORKDIR /action-release
 
 RUN export YARN_CACHE_FOLDER="$(mktemp -d)" \
     && yarn add canvas@2.11.2 gifsicle@5.3.0 --no-lockfile \
     && rm -r "$YARN_CACHE_FOLDER"
 
-COPY --from=builder /app/packages/action/dist/ /
+COPY --from=builder /app/packages/action/dist/ /action-release/
 
 CMD ["node", "/action-release/index.js"]
 
