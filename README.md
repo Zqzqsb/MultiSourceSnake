@@ -28,7 +28,7 @@ Generate a fun snake game animation from your contributions on both Gitee and Gi
 
 ## 🚀 Usage
 
-### 🔄 Example on Cron Job with GitHub Actions
+### 🔄 Cron Job with GitHub Actions
 
 ```yaml
 name: Generate MultiSnake
@@ -70,6 +70,14 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
+
+### Example of Mine
+
+you can checkout [my profile](https://github.com/Zqzqsb/Zqzqsb) to figure how to use this scipt.
+
+after you put the scipt under `.github/workflows`, you can manually run this action to test it.
+
+![](https://alicloud-pic.oss-cn-shanghai.aliyuncs.com/MultiSourceSnake/UsageExample.png)
 
 ## 🌙 Dark Mode
 
