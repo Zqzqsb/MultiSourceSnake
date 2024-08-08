@@ -1,72 +1,79 @@
-# snk
+# 🐍 Multi-Source Git Contribution Animation
 
-[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/platane/platane/main.yml?label=action&style=flat-square)](https://github.com/Platane/Platane/actions/workflows/main.yml)
-[![GitHub release](https://img.shields.io/github/release/platane/snk.svg?style=flat-square)](https://github.com/platane/snk/releases/latest)
-[![GitHub marketplace](https://img.shields.io/badge/marketplace-snake-blue?logo=github&style=flat-square)](https://github.com/marketplace/actions/generate-snake-game-from-github-contribution-grid)
-![type definitions](https://img.shields.io/npm/types/typescript?style=flat-square)
-![code style](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)
+Generate a fun snake game animation from your contributions on both Gitee and GitHub platforms!
 
-Generates a snake game from a github user contributions graph
-
-<picture>
-  <source
-    media="(prefers-color-scheme: dark)"
-    srcset="https://raw.githubusercontent.com/platane/snk/output/github-contribution-grid-snake-dark.svg"
-  />
-  <source
-    media="(prefers-color-scheme: light)"
-    srcset="https://raw.githubusercontent.com/platane/snk/output/github-contribution-grid-snake.svg"
-  />
+<p align="center">
   <img
-    alt="github contribution grid snake animation"
-    src="https://raw.githubusercontent.com/platane/snk/output/github-contribution-grid-snake.svg"
+    alt="GitHub Contribution Grid Snake Animation"
+    src="https://alicloud-pic.oss-cn-shanghai.aliyuncs.com/MultiSourceSnake/contributions.png"
   />
-</picture>
+</p>
 
-Pull a github user's contribution graph.
-Make it a snake Game, generate a snake path where the cells get eaten in an orderly fashion.
+<p align="center">
+  <picture>
+    <source
+      media="(prefers-color-scheme: dark)"
+      srcset="https://alicloud-pic.oss-cn-shanghai.aliyuncs.com/MultiSourceSnake/github-snake-dark.svg"
+    />
+    <source
+      media="(prefers-color-scheme: light)"
+      srcset="https://alicloud-pic.oss-cn-shanghai.aliyuncs.com/MultiSourceSnake/github-snake.svg"
+    />
+    <img
+      alt="GitHub Contribution Grid Snake Animation"
+      src="https://alicloud-pic.oss-cn-shanghai.aliyuncs.com/MultiSourceSnake/github-snake.svg"
+    />
+  </picture>
+</p>
 
-Generate a [gif](https://github.com/Platane/snk/raw/output/github-contribution-grid-snake.gif) or [svg](https://github.com/Platane/snk/raw/output/github-contribution-grid-snake.svg) image.
+## 🚀 Usage
 
-Available as github action. It can automatically generate a new image each day. Which makes for great [github profile readme](https://docs.github.com/en/free-pro-team@latest/github/setting-up-and-managing-your-github-profile/managing-your-profile-readme)
-
-## Usage
-
-**github action**
+### 🔄 Example on Cron Job with GitHub Actions
 
 ```yaml
-- uses: Platane/snk@v3
-  with:
-    # github user name to read the contribution graph from (**required**)
-    # using action context var `github.repository_owner` or specified user
-    github_user_name: ${{ github.repository_owner }}
+name: Generate MultiSnake
 
-    # list of files to generate.
-    # one file per line. Each output can be customized with options as query string.
-    #
-    #  supported options:
-    #  - palette:     A preset of color, one of [github, github-dark, github-light]
-    #  - color_snake: Color of the snake
-    #  - color_dots:  Coma separated list of dots color.
-    #                 The first one is 0 contribution, then it goes from the low contribution to the highest.
-    #                 Exactly 5 colors are expected.
-    outputs: |
-      dist/github-snake.svg
-      dist/github-snake-dark.svg?palette=github-dark
-      dist/ocean.gif?color_snake=orange&color_dots=#bfd6f6,#8dbdff,#64a1f4,#4b91f1,#3c7dd9
+on:
+  schedule:
+    - cron: "0 */6 * * *" # Runs every six hours
+  workflow_dispatch: # Allows manual launch
 
-  env:
-    # a github token is required to fetch the contribution calendar from github API
-    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      # Checkout repository
+      - name: 📥 Checkout the repository
+        uses: actions/checkout@v2
+
+      # Generate Snake animation
+      - name: 🐍 Generate MultiSource Snake animation
+        uses: Zqzqsb/MultiSourceSnake@v1.0
+        with:
+          GITHUB_USER: # Your GitHub username {required}
+          GITEE_USER: # Your Gitee username {required}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITEE_TOKEN: # Your Gitee API access token {required}
+          outputs: |
+            dist/github-snake.svg
+            dist/github-snake-dark.svg?palette=github-dark
+            dist/ocean.gif?color_snake=orange&color_dots=#bfd6f6,#8dbdff,#64a1f4,#4b91f1,#3c7dd9
+
+      # Push outputs
+      - name: 🚀 Push GitHub Snake animation to the output branch
+        uses: crazy-max/ghaction-github-pages@v2.5.0
+        with:
+          target_branch: output
+          build_dir: dist
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
 
-[example with cron job](https://github.com/Platane/Platane/blob/master/.github/workflows/main.yml#L26-L35)
+## 🌙 Dark Mode
 
-If you are only interested in generating a svg, consider using this faster action: `uses: Platane/snk/svg-only@v3`
-
-**dark mode**
-
-For **dark mode** support on github, use this [special syntax](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#specifying-the-theme-an-image-is-shown-to) in your readme.
+For dark mode support on GitHub, use this special syntax in your README:
 
 ```html
 <picture>
@@ -76,22 +83,16 @@ For **dark mode** support on github, use this [special syntax](https://docs.gith
 </picture>
 ```
 
-**interactive demo**
+## 🔑 Gitee Token Setup
 
-<a href="https://platane.github.io/snk">
-  <img height="300px" src="https://user-images.githubusercontent.com/1659820/121798244-7c86d700-cc25-11eb-8c1c-b8e65556ac0d.gif" ></img>
-</a>
+To set up your Gitee token, simply create an API token with minimal privileges.
 
-[platane.github.io/snk](https://platane.github.io/snk)
+<p align="center">
+  <img src="https://alicloud-pic.oss-cn-shanghai.aliyuncs.com/MultiSourceSnake/GiteeApiSetup.png" alt="Gitee Token Setup"/>
+</p>
 
-**local**
+## 📝 Acknowledgement
 
-```
-npm install
+A big thanks to Platane/snk for the original idea and implementation.
 
-npm run dev:demo
-```
-
-## Implementation
-
-[solver algorithm](./packages/solver/README.md)
+This project makes minor modifications to the original project.
