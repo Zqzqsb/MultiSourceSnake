@@ -93,6 +93,6 @@ To set up your Gitee token, simply create an API token with minimal privileges.
 
 ## 📝 Acknowledgement
 
-A big thanks to Platane/snk for the original idea and implementation.
+A big thanks to [Platane/snk](https://github.com/Platane/snk) for the original idea and implementation.
 
 This project makes minor modifications to the original project.
