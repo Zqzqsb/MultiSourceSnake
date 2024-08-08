@@ -73,9 +73,9 @@ jobs:
 
 ### Example of Mine
 
-you can checkout [my profile](https://github.com/Zqzqsb/Zqzqsb) to figure how to use this scipt.
+you can checkout [my profile](https://github.com/Zqzqsb/Zqzqsb) to figure out how to use this scipt.
 
-after you put the scipt under `.github/workflows`, you can manually run this action to test it.
+after you put the script under `.github/workflows`, you can manually run this action to test it.
 
 ![](https://alicloud-pic.oss-cn-shanghai.aliyuncs.com/MultiSourceSnake/UsageExample.png)
 
