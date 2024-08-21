@@ -18,8 +18,8 @@ export const generateContributionSnake = async (
   options: { githubToken: string; giteeToken: string }
 ) => {
   console.log("🚀 Outputs:", outputs);
-  console.log("🚀 giteeUsername:" , giteeUserName);
-  console.log("🚀 githubUsername:" , githubUserName);
+  console.log("🚀 giteeUsername:", giteeUserName);
+  console.log("🚀 githubUsername:", githubUserName);
 
   // 可能是这里 await 的问题
   console.log("🎣 fetching github user contribution");
@@ -45,11 +45,11 @@ export const generateContributionSnake = async (
   cells.forEach((cell) => {
     let level: number = 0;
 
-    if (cell.count > 20) {
+    if (cell.count > 10) {
       level = 4; // 表示 "FOURTH_QUARTILE"
-    } else if (cell.count > 10) {
+    } else if (cell.count > 6) {
       level = 3; // 表示 "THIRD_QUARTILE"
-    } else if (cell.count > 5) {
+    } else if (cell.count > 3) {
       level = 2; // 表示 "SECOND_QUARTILE"
     } else if (cell.count > 0) {
       level = 1; // 表示 "FIRST_QUARTILE"

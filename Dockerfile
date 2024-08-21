@@ -1,5 +1,8 @@
 FROM node:18-slim as builder
 
+ENV http_proxy=http://10.176.25.111:7890
+ENV https_proxy=http://10.176.25.111:7890
+
 WORKDIR /app
 
 COPY package.json yarn.lock ./

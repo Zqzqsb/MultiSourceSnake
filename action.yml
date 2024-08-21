@@ -4,7 +4,7 @@ author: "ZQ"
 
 runs:
   using: docker
-  image: docker://pray0/multi-source-snake:v1.5
+  image: docker://pray0/multi-source-snake:v1.6
 
 inputs:
   GITHUB_USER:
@@ -37,4 +37,3 @@ inputs:
           dark.svg?palette=github-dark&color_snake=blue
           light.svg?color_snake=#7845ab
           ocean.gif?color_snake=orange&color_dots=#bfd6f6,#8dbdff,#64a1f4,#4b91f1,#3c7dd9
-
